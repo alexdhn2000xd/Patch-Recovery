@@ -7,6 +7,7 @@ on:
         description: 'RECOVERY URL'
         required: true
         default: 'https://transfer.sh/(RECOMMENDED)'
+        type: string
 
 jobs:
   process:
@@ -20,11 +21,9 @@ jobs:
       run: |
         sudo apt install git wget lz4 tar openssl python3 -y
 
-    - name: Fetch image from URL
+     - name: Download recovery image from URL
       run: |
-        ls
-        pwd
-        wget ${{github.event.inputs.RECOVERY_URL }} -O recovery.img
+         wget ${{github.event.inputs.image_url}}
 
     - name: Patch Process-1
       run: |
